@@ -1,0 +1,12 @@
+(defun flatten (x)
+    (cond
+        ((null x) nil)
+        ((atom x) (list x))
+        (t (append (flatten (car x)) (flatten (cdr x))))
+    )
+)
+(clear)
+(flatten '(1 (2 (3 4) (5) (6 7) 8) 9))
+(flatten '(a (b (c (d e))) f (g h) i))
+(flatten '((1 . 2) ((3 4) . 5) 6))
+(flatten '(((k (r s t u)) g (m)) c d ((n) (o (v w x y z) q))))
