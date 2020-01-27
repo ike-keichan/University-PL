@@ -1,0 +1,46 @@
+Program ::= Statements
+                         
+Statements ::= Statement 'PERIOD' | Statements Statement 'PERIOD'
+
+Statement ::= RectangleDrawing | LineDrawing | ArcDrawing | StringDrawing | ImageDrawing
+           
+RectangleDrawing ::= 'STROKE' 'RECTANGLE' RectangleAttributes | 'FILL' 'RECTANGLE' RectangleAttributes
+
+LineDrawing ::= 'STROKE' 'LINE' LineAttributes | 'FILL' 'LINE' LineAttributes
+
+ArcDrawing ::= 'STROKE' 'ARC' ArcAttributes | 'FILL' 'ARC' ArcAttributes
+
+StringDrawing ::= 'DISPLAY' 'STRING' StringAttributes
+
+ImageDrawing ::= 'DISPLAY' 'IMAGE' ImageAttributes
+
+RectangleAttributes ::= 'START' Coordinate 'END' Coordinate ColorAndThickness
+
+LineAttributes ::= 'START' Coordinate ('PASS' Coordinate)+ 'END' Coordinate ColorAndThickness
+
+ArcAttributes ::= 'START' Coordinate 'END' Coordinate 'ANGLE' Integer 'SWEEP' Integer ColorAndThickness
+
+StringAttributes ::= 'AT' Coordinate Wquoted
+
+ImageAttributes ::= 'AT' Coordinate Wquoted
+
+ColorAndThickness ::= 'COLOR' Pigment | 'COLOR' Pigment 'WIDTH' Integer | 'WIDTH' Integer | 'WIDTH' Integer 'COLOR' Pigment
+ 
+Pigment ::= 'RED' | 'GREEN' | 'BLUE' | 'CYAN' | 'MAGENTA' | 'YELLOW' | 'GRAY' | 'BLACK' | 'WHITE'
+
+Coordinate ::= Integer 'ATMARK' Integer
+
+Integer ::= Number+
+
+Wquoted ::= '"' Character+ '"'
+
+Number ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+
+Character ::= Number | EnglishCharacter | SpecialCharacter
+
+EnglishCharacter ::= 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M'
+                   | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
+                   | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm'
+                   | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' 
+
+SpecialCharacter ::= '△' | '/' | ':' | '@' | '[' | '`' | '{' | '~'    
